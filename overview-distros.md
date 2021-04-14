@@ -5,7 +5,7 @@
 ### Redhat-Familie 
 
 ```
-Centos 
+Centos (bis 2021 wie Redhat, danach z.B. AlmaLinux)
 Redhat.  — rpm / (yum / dnf) 
 Fedora 
 ```
@@ -21,7 +21,8 @@ Mint
 
 ```
 SLES (SuSE Linux Enterprise)
-OpenSuSE 
+OpenSuSE - rpm, yum (zypper)  
+
 ```
 
 ## Distris zur Sicherheitsüberprüfung / Hacken 
