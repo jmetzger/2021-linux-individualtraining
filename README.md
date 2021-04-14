@@ -72,6 +72,8 @@
      * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
   1. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
+     * [IP-Adresse auslesen](ip-adresse-auslesen.md) 
+     * [Netzwerk unter Centos konfigurieren - nmtui](nmtui.md)
      * [Auf welchen Ports lauscht mein Server](lsof.md) 
   1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
