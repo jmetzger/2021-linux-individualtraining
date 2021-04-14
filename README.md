@@ -25,6 +25,7 @@
      * [Verzeichnisse anlegen](mkdir.md)
      * [Verzeichnisse und Dateien löschen](file-dir-delete.md)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](file-rename-copy-mv.md) 
+     * [Grafisch Navigieren auf der Kommandozeile - mc](mc.md) 
     
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](prozesse.md)
