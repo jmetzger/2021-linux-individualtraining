@@ -27,3 +27,9 @@ kurs@ubuntu2004-101:~$ #  7  |  6  | 4
 ```
 chmod g+w,o+r testfile
 ```
+
+## Ausführungsrechte für Benutzer für Script setzen
+
+```
+chmod u+x script.sh 
+```
