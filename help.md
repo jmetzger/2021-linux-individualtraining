@@ -29,7 +29,7 @@ G # für ans Ende der Datei springe
 1g # in die erste Zeile 
 ```
 
-## Suche mit in man-pages 
+## Suche in man-pages 
 
 ```
 /Suchwort [Enter]
