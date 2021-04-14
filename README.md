@@ -4,6 +4,7 @@
 
   1. Distributionen 
      * [Überblick](overview-distros.md)
+     * [Aufbau/Komponenten](aufbau.md)
   1. Verzeichnisse und Dateitypen 
      * [Verzeichnisaufbau](verzeichnisaufbau.md)
      * [Dateitypen](dateitypen.md) 
