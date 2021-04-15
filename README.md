@@ -34,6 +34,7 @@
      * [Rechte](rechte.md) 
      * [Dateien für Benutzer und Gruppen](files-users-groups.md) 
      * [Benutzer anlegen](create-users.md) 
+     * [Wie funktioniert die Maske (umask)](umask.md) 
      * [sudo Benutzer erstellen](mod-user-sudo.md) 
   1. Dateimanipulation/Unix Tools
      * [Anfang oder Ende einer Datei/Ausgabe anzeigen](head-tail.md)
