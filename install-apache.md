@@ -37,10 +37,28 @@ firewall-cmd --reload
 
 ## Schritt 5: 
 # Mit Browser testen 
-
-## Achtung: Optional, manchmal schiesst selinux quer 
-# z.B. beim Ändern eines Ports 
-# mit sestatus prüfen 
-
 ```
 
+## Apache started nicht wg Port-Änderung (Port: 82) 
+
+```
+# Es kommt ein Fehler bei Apache port 82 (Listen 82) 
+systemctl start httpd
+
+# Schritt 1: Prüfen, ob selinux aktiv ist
+sestatus # Sucht 2 Einträgen enforcing 
+
+# Schritt 2: selinux testweise abschalten 
+setenforce 0 # das heisst, regeln werden protokolliert, aber nicht durchgesetzt 
+
+# Schritt3: 
+systemctl restart httpd 
+
+# Wenn das der Fall ist, selinux deaktivieren 
+/etc/selinux/config 
+# mit editor 
+SELINUX=permissive
+# oder wenn man generell selinux nicht einsetzten möchte:
+SELINUX=disabled 
+# Danach rebooten 
+```
