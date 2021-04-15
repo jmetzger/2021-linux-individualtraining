@@ -8,6 +8,8 @@ systemctl status sshd
 
 # Wie heisst der Dienst / welche Dienste gibt es ? 
 systemctl list-units -t service 
+systemctl list-units --type=service 
+systemctl -t service # Shortcut 
 # für apache
 systemctl list-units -t service | grep ^apache
 # die Abkürzung 
@@ -86,7 +88,7 @@ systemctl status
 ## Targets (wechseln und default) 
 
 ```
-# Default runlevel/target auslesen 
+# Default runlevel/target auslesen - in welchen Modus/Status geht das System beim Booten 
 systemctl get-default 
 # in target wechseln 
 systemctl isolate multi-user 
