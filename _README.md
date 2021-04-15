@@ -1,9 +1,10 @@
-# Linux Basiswissen 
+# Linux Individual-Training
 
 
 ## Agenda
   1. Distributionen 
      * [Überblick](#überblick)
+     * [Aufbau/Komponenten](#aufbaukomponenten)
   1. Verzeichnisse und Dateitypen 
      * [Verzeichnisaufbau](#verzeichnisaufbau)
      * [Dateitypen](#dateitypen)
@@ -17,6 +18,7 @@
   1. Erweiterte Befehle (Nice to have) 
      * [Alias Befehle anzeigen](#alias-befehle-anzeigen)
      * [Welche Bibliotheken verwendet ein ausführbares Programm](#welche-bibliotheken-verwendet-ein-ausführbares-programm)
+     * [Wo liegt ein ausführbares Programm](#wo-liegt-ein-ausführbares-programm)
   1. Dateien und Verzeichnisse
      * [Mit cd im System navigieren](#mit-cd-im-system-navigieren)
      * [Verzeichnisse in Listenansicht mit versteckten Dateien anzeigen -> ls -la](#verzeichnisse-in-listenansicht-mit-versteckten-dateien-anzeigen-->-ls--la)
@@ -24,65 +26,74 @@
      * [Verzeichnisse anlegen](#verzeichnisse-anlegen)
      * [Verzeichnisse und Dateien löschen](#verzeichnisse-und-dateien-löschen)
      * [Kopieren/Verschieben/Umbenennen von Dateien und Files](#kopierenverschiebenumbenennen-von-dateien-und-files)
-    
-  1. Prozesse 
+     * [Grafisch Navigieren auf der Kommandozeile - mc](#grafisch-navigieren-auf-der-kommandozeile---mc)
+  1. Systemadministration 
+     * [Hostname setzen/abfragen](#hostname-setzenabfragen)
+  3. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p](#prozesse-anzeigen---pspstree--p)
-  1. Benutzer, Gruppen und Rechte 
+  4. Benutzer, Gruppen und Rechte 
      * [Rechte](#rechte)
      * [Dateien für Benutzer und Gruppen](#dateien-für-benutzer-und-gruppen)
      * [Benutzer anlegen](#benutzer-anlegen)
+     * [Wie funktioniert die Maske (umask)](#wie-funktioniert-die-maske-umask)
      * [sudo Benutzer erstellen](#sudo-benutzer-erstellen)
-  1. Dateimanipulation/Unix Tools
+  5. Dateimanipulation/Unix Tools
      * [Anfang oder Ende einer Datei/Ausgabe anzeigen](#anfang-oder-ende-einer-dateiausgabe-anzeigen)
      * [cat/head/tail-Beginn/Ende einer Datei anzeigen](#catheadtail-beginnende-einer-datei-anzeigen)
      * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](#zcat---inhalte-einer-mit-gzip-komprimierten-datei-anzeigen)
      * [wc - Zeilen zählen](#wc---zeilen-zählen)
      * [Bestimmte Zeilen aus Datei anzeigen - grep](#bestimmte-zeilen-aus-datei-anzeigen---grep)
      * [Erweiterte Suche mit Grep](#erweiterte-suche-mit-grep)
-  1. Logs/Loganalyse
+  6. Logs/Loganalyse
      * [Logfile beobachten](#logfile-beobachten)
      * [Dienste debuggen](#dienste-debuggen)
      * [Rsyslog](#rsyslog)
-  1. Variablen
+  7. Variablen
      * [Setzen und verwenden von Variablen](#setzen-und-verwenden-von-variablen)
-  1. Dienste/Runlevel(Targets verwalten) 
+  8. Dienste/Runlevel(Targets verwalten) 
      * [Die wichtigsten systemctl/service](#die-wichtigsten-systemctlservice)
      * [Systemctl - timers](#systemctl---timers)
      * [Gegenüberstellung service etc/init.d/ systemctl](#gegenüberstellung-service-etcinit.d-systemctl)
-  1. Partitionierung und Filesystem
+  9. Partitionierung und Filesystem
      * [parted and mkfs.ext4](#parted-and-mkfs.ext4)
-  1. Boot-Prozess und Kernel 
+ 10. Boot-Prozess und Kernel 
      * [Grub konfigurieren](#grub-konfigurieren)
      * [Kernel-Version anzeigen](#kernel-version-anzeigen)
      * [Kernel-Module laden/entladen/zeigen](#kernel-module-ladenentladenzeigen)
-  1. Hilfe 
+ 11. Hilfe 
      * [Hilfe zu Befehlen](#hilfe-zu-befehlen)
-  1. Grafische Oberfläche und Installation 
+ 12. Grafische Oberfläche und Installation 
      * [Gnome unter Ubuntu installieren](#gnome-unter-ubuntu-installieren)
      * [X-Server - Ausgabe auf Windows umleiten](#x-server---ausgabe-auf-windows-umleiten)
      * [Installations-Images-Server](https://ubuntu.com/download/server#download)
-  1. Wartung und Aktualisierung
+ 13. Wartung und Aktualisierung
      * [Aktualisierung des Systems](#aktualisierung-des-systems)
      * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
+     * [Paketmanager rpm/yum](#paketmanager-rpmyum)
      * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
-  1. Firewall und ports
+     * [Lokalen Mirrorserver aufsetzen - Centos](https://wiki.centos.org/HowTos/CreateLocalMirror)
+     * [Installationsbeispiel Apache auf Centos](#installationsbeispiel-apache-auf-centos)
+ 14. Firewall und ports
      * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
      * [firewalld](#firewalld)
      * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
-  1. Netzwerk/Dienste 
+ 15. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
+     * [IP-Adresse auslesen](#ip-adresse-auslesen)
+     * [Netzwerk unter Centos konfigurieren - nmtui](#netzwerk-unter-centos-konfigurieren---nmtui)
      * [Auf welchen Ports lauscht mein Server](#auf-welchen-ports-lauscht-mein-server)
-  1. Tools/Verschiedens 
+     * [Netzwerkabel drin/nicht drin?](#netzwerkabel-drinnicht-drin)
+ 16. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](#warum-umask-002-und-0002----geschichte)
      * [lokale Mails installieren](#lokale-mails-installieren)
-  1. Bash/Bash-Scripting 
+ 17. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](#einfaches-script-zur-datumsausgabe)
      * [Ausführen/Verketten von mehreren Befehlen](#ausführenverketten-von-mehreren-befehlen)
-  1. Timers/cronjobs 
+ 18. Timers/cronjobs 
      * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
      * [cronjob (zentral) - crond](#cronjob-zentral---crond)
-  1. Literatur 
+ 19. Literatur 
      * [Literatur](#literatur)
 
 
@@ -100,7 +111,7 @@
 #### Redhat-Familie 
 
 ```
-Centos 
+Centos (bis 2021 wie Redhat, danach z.B. AlmaLinux)
 Redhat.  — rpm / (yum / dnf) 
 Fedora 
 ```
@@ -116,7 +127,8 @@ Mint
 
 ```
 SLES (SuSE Linux Enterprise)
-OpenSuSE 
+OpenSuSE - rpm, yum (zypper)  
+
 ```
 
 ### Distris zur Sicherheitsüberprüfung / Hacken 
@@ -141,6 +153,27 @@ DDWRT
 ### Seite mit Übersicht aller Linux-Distros 
 
   * https://distrowatch.com/
+
+<div class="page-break"></div>
+
+### Aufbau/Komponenten
+
+
+```
+Installer
+Bootmanager
+Kernel 
+Paket-Verwaltung (geholt über die Repositories)
+Software 
+Grafische Oberfläche 
+Administrations-Tool 
+```
+
+### Grafische Oberfläche 
+
+```
+Gnome (in der Regel bzw. das was vorgegeben wird) - Das ist die verbreiteste.
+```
 
 <div class="page-break"></div>
 
@@ -233,6 +266,7 @@ d directory
 l symbolischer Link 
 c Character-Device (Eingabegerät: Zeichenorientiert z.B. Tastatur)  
 b Block-Device (Ausgabegerät): Blockorientiert, z.B. Festplatte) 
+s Socket 
 ```
 
 <div class="page-break"></div>
@@ -373,6 +407,17 @@ alias
 
 ```
 ldd /usr/bin/ls 
+```
+
+<div class="page-break"></div>
+
+### Wo liegt ein ausführbares Programm
+
+
+```
+## Sucht in der Pfad-Variablen $PATH nach dem programm
+## und zeigt ersten Fund --> d.h. dieses Programm würde ausgeführt 
+which false 
 ```
 
 <div class="page-break"></div>
@@ -557,7 +602,34 @@ cp -a /etc /etc3
 
 <div class="page-break"></div>
 
-## Prozesse 
+### Grafisch Navigieren auf der Kommandozeile - mc
+
+
+```
+## centos 
+yum install mc 
+
+## ubuntu - not sure, not tested 
+apt install mc 
+```
+
+<div class="page-break"></div>
+
+## Systemadministration 
+
+### Hostname setzen/abfragen
+
+
+```
+## Abfragen 
+hostnamectl
+hostnamectl set-hostname centos4.training.local  
+hostnamectl 
+## Trick für prompt - ist in der aktuellen, erst nach neueinloggen/bzw. neuer bash aktiv 
+su - root # bzw. su - benutzer 
+```
+
+<div class="page-break"></div>
 
 ### Prozesse anzeigen - ps/pstree -p
 
@@ -583,8 +655,6 @@ pstree -p
 ```
 
 <div class="page-break"></div>
-
-## Benutzer, Gruppen und Rechte 
 
 ### Rechte
 
@@ -615,6 +685,28 @@ kurs@ubuntu2004-101:~$ #  7  |  6  | 4
 
 ```
 chmod g+w,o+r testfile
+```
+
+### Ausführungsrechte für Benutzer für Script setzen
+
+```
+chmod u+x script.sh 
+```
+
+### SGID - Bit setzen 
+
+```
+## Alle neuen Dateien und Verzeichnisse bekommen als Gruppe die Gruppe des Verzeichnisses
+ls -la | grep dokumente
+drwxrwsr-x.   5 root dg4   131 15. Apr 10:18 dokumente
+
+## d.h. hier sind neu angelegte Ordner und Dateien in der Gruppe 'dg4'
+## Abweichend vom Standardverhalten: user/gruppe vom benutzer der Datei anlegt 
+
+## + Vererbung funktioniert hier auch. 
+
+
+chmod g+s /dokumente 
 ```
 
 <div class="page-break"></div>
@@ -653,6 +745,66 @@ adduser
 
 <div class="page-break"></div>
 
+### Wie funktioniert die Maske (umask)
+
+
+### Welche Rechte haben neue Dateien 
+
+  * Diese wird durch die Maske des eingeloggten Benutzers bestimmt (umask)
+
+### Maske anzeigen / setzen
+
+```
+umask 
+
+## Nur während der Session aktiv
+umask 0222 
+```
+
+### Wie funktioniert es ? 
+
+```
+## Maximale Rechte einer Datei 
+666 = rw-rw-rw-
+
+## Maximale Rechte Verzeichnis 
+777 = rwxrwxrwx
+
+## Beim Anlegen eines Verzeichnisse / Datei werden die Rechte berechnet:
+
+## Datei 
+  0666
+- 0002 <- diese Wert kommt von umask 
+======
+  0664 <- Diese Rechte werden verwendet
+
+## Verzeichnis 
+  0777
+- 0002 <- diese Wert kommt von umask 
+======
+  0775 <- Diese Rechte werden verwendet
+
+```
+
+### Maske während der Session setzten 
+
+```
+umask 0000
+```
+
+### Mask persistent setzen für meinen Benutzer (auch nach Neuanmeldung gültig) 
+
+```
+## Entweder mit Editor oder 
+## Achtung Zwei / 2 ! >> 
+echo "umask 0000" >> ~/.bashrc
+## Testen
+su - benutzer # benutzer ist der Name des Benutzer unter dem ich eingeloggt bin 
+
+```
+
+<div class="page-break"></div>
+
 ### sudo Benutzer erstellen
 
 
@@ -670,8 +822,6 @@ sudo su -
 ```
 
 <div class="page-break"></div>
-
-## Dateimanipulation/Unix Tools
 
 ### Anfang oder Ende einer Datei/Ausgabe anzeigen
 
@@ -934,8 +1084,6 @@ grep  "[[:digit:]]\{5\}" /root/namen
 
 <div class="page-break"></div>
 
-## Logs/Loganalyse
-
 ### Logfile beobachten
 
 
@@ -1017,8 +1165,6 @@ Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server
 
 <div class="page-break"></div>
 
-## Variablen
-
 ### Setzen und verwenden von Variablen
 
 
@@ -1048,8 +1194,6 @@ Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server
 
 <div class="page-break"></div>
 
-## Dienste/Runlevel(Targets verwalten) 
-
 ### Die wichtigsten systemctl/service
 
 
@@ -1061,6 +1205,8 @@ systemctl status sshd
 
 ## Wie heisst der Dienst / welche Dienste gibt es ? 
 systemctl list-units -t service 
+systemctl list-units --type=service 
+systemctl -t service # Shortcut 
 ## für apache
 systemctl list-units -t service | grep ^apache
 ## die Abkürzung 
@@ -1069,6 +1215,10 @@ systemctl -t service | grep ^apache
 
 ## Dienst aktivieren
 systemctl enable apache2 
+## Dienst aktivieren und gleich starten 
+systemctl enable --now apache2 # Ubuntu 
+systemctl enable --now httpd # Centos / Redhat 
+
 ## Ist Dienst aktiviert 
 systemctl is-enabled apache2
 enabled
@@ -1139,7 +1289,7 @@ systemctl status
 ### Targets (wechseln und default) 
 
 ```
-## Default runlevel/target auslesen 
+## Default runlevel/target auslesen - in welchen Modus/Status geht das System beim Booten 
 systemctl get-default 
 ## in target wechseln 
 systemctl isolate multi-user 
@@ -1281,8 +1431,6 @@ service rsyslog status
 
 <div class="page-break"></div>
 
-## Partitionierung und Filesystem
-
 ### parted and mkfs.ext4
 
 
@@ -1331,8 +1479,6 @@ mount | grep platte  # taucht platte hier auf ?
 ```
 
 <div class="page-break"></div>
-
-## Boot-Prozess und Kernel 
 
 ### Grub konfigurieren
 
@@ -1439,7 +1585,7 @@ G # für ans Ende der Datei springe
 1g # in die erste Zeile 
 ```
 
-### Suche mit in man-pages 
+### Suche in man-pages 
 
 ```
 /Suchwort [Enter]
@@ -1448,8 +1594,6 @@ N # letzter Treffer
 ```
 
 <div class="page-break"></div>
-
-## Grafische Oberfläche und Installation 
 
 ### Gnome unter Ubuntu installieren
 
@@ -1471,8 +1615,6 @@ sudo tasksel install ubuntu-desktop
 ### Installations-Images-Server
 
   * https://ubuntu.com/download/server#download
-
-## Wartung und Aktualisierung
 
 ### Aktualisierung des Systems
 
@@ -1566,6 +1708,37 @@ apt install apache2
 
 <div class="page-break"></div>
 
+### Paketmanager rpm/yum
+
+
+### Wo werden die Repos konfiguriert 
+
+```
+/etc/yum/repos.d
+
+```
+
+### Grundbefehle 
+
+```
+## Was ist installiert
+yum list installed
+
+## Nach Paket suchen 
+yum search httpd 
+
+## Paket installieren 
+yum install httpd 
+
+## Installation updaten 
+yum update 
+### automatisch fragen bejahen 
+yum -y update 
+
+```
+
+<div class="page-break"></div>
+
 ### Archive runterladen und entpacken
 
 
@@ -1587,7 +1760,85 @@ tar xvf master.tar.gz
 
 <div class="page-break"></div>
 
-## Firewall und ports
+### Lokalen Mirrorserver aufsetzen - Centos
+
+  * https://wiki.centos.org/HowTos/CreateLocalMirror
+
+### Installationsbeispiel Apache auf Centos
+
+
+### Walkthrough 
+
+```
+### Schritt 1:
+## suche // apache heisst auf centos httpd
+yum search httpd
+## oder
+dns search httpd
+
+### Schritt 2: 
+yum install httpd 
+
+### Wie heisst der Dienst und Starten und Enablen (für nächsten Reboot)  
+yum list-unit-files --type=service | grep httpd
+systemctl enable httpd 
+systemctl start httpd 
+
+### Schritt 3: 
+## Konfiguration anpassen
+## /etc/httpd/conf/httpd.conf # Hauptkonfigurationsdatei
+## Änderungen mit Editor vornehmen z.B. nano 
+cd /etc/httpd/conf/httpd.conf; nano httpd.conf 
+## Danach Neustart oder Reload 
+## Restart funktioniert immer
+systemctl restart httpd 
+
+### Schritt 4:
+## Firewall freigeben 
+## D.h. welche zone ist active -> public 
+firewall-cmd --get-active-zones  
+## konfigurieren 
+firewall-cmd --add-service=http --permanent 
+firewall-cmd --add-service=https --permanent 
+firewall-cmd --reload 
+
+### Schritt 5: 
+## Mit Browser testen 
+```
+
+### Apache started nicht wg Port-Änderung (Port: 82)  - Quick and Dirty Lösung
+
+```
+## Es kommt ein Fehler bei Apache port 82 (Listen 82) 
+systemctl start httpd
+
+## Schritt 1: Prüfen, ob selinux aktiv ist
+sestatus # Sucht 2 Einträgen enforcing 
+
+## Schritt 2: selinux testweise abschalten 
+setenforce 0 # das heisst, regeln werden protokolliert, aber nicht durchgesetzt 
+
+## Schritt3: 
+systemctl restart httpd 
+
+## Wenn das der Fall ist, selinux deaktivieren 
+/etc/selinux/config 
+## mit editor 
+SELINUX=permissive
+## oder wenn man generell selinux nicht einsetzten möchte:
+SELINUX=disabled 
+## Danach rebooten 
+```
+
+### Apache started nicht wg Port-Änderung (Port: 82)  - Nice and Smooth (better!) 
+
+```
+semanage port -a -t http_port_t -p tcp 82 
+setenforce 1 
+systemctl restart httpd 
+```
+
+<div class="page-break"></div>
 
 ### ufw (uncomplicated firewall)
 
@@ -1798,8 +2049,6 @@ firewall-cmd --runtime-to-permanent
 
 ### Scannen und Überprüfen mit telnet/nmap
 
-## Netzwerk/Dienste 
-
 ### IP-Adresse von DHCP-Server holen (quick-and-dirty)
 
 
@@ -1810,6 +2059,38 @@ firewall-cmd --runtime-to-permanent
 ip a # zeigt die Netzwerkschnittstellen an.
 dhclient enp0s8 # ip - Adresse für Schnittstelle enp0s8 holen  
 ip a
+```
+
+<div class="page-break"></div>
+
+### IP-Adresse auslesen
+
+
+```
+ip a 
+ip address 
+
+ifconfig # geht nicht immer / muss manchmal nachinstalliert werden 
+```
+
+<div class="page-break"></div>
+
+### Netzwerk unter Centos konfigurieren - nmtui
+
+
+```
+1.  Menüpunkt bearbeiten
+2.  Netzwerkinterface auswählen 
+3.  Dann bearbeiten.
+4.  Einstellungen vornehmen
+5.  Speichern 
+6.  Zurück
+7.  Beenden
+
+## Navigation erfolgt über die Tasten
+TAB 
+Leertaste für Auswählen 
+und Pfeiltasten 
 ```
 
 <div class="page-break"></div>
@@ -1826,7 +2107,46 @@ netstat -tupel
 
 <div class="page-break"></div>
 
-## Tools/Verschiedens 
+### Netzwerkabel drin/nicht drin?
+
+
+```
+## Variant 1 (Centos/Redhat  && Ubuntu/Debian) 
+ip link show enp0s8 
+
+## If cable it not plugin-in 
+NO-CARRIER 
+
+## Variant 2: Works on all systems  
+cat /sys/class/net/enp0s8/operstate
+
+## Variant 3: nmcli (Centos/Redhat) 
+nmcli conn show  # Alle Connections 
+nmcli dev show  # Alle Netzwerk-Devices 
+## Show only active connection (activated with nmtui) 
+nmcli conn show --active 
+nmcli conn show enp0s8 
+## Kabel gezogen 
+nmcli dev show enp0s8 
+## -> must have: ...CARRIER: aus/an 
+nmcli dev show enp0s8 | grep -i carrier  # -i -> case insensitive -> egal ob gross oder klein geschrieben
+## 
+nmcli -f WIRED-PROPERTIES dev show enp0s8 
+##
+```
+
+### Netzwerkkarte aktivieren / deaktivieren nmcli 
+
+```
+nmcli conn show
+## Das wäre das gleich wie aktivieren/deaktivieren in nmtui 
+## Achtung . muss der Name der Connection sein und nicht Interface
+## Auf centos8 testsystem war das identisch 
+nmcli conn up enp0s8 
+nmcli conn down enp0s8
+```
+
+<div class="page-break"></div>
 
 ### Remote Desktop für Linux / durch Teilnehmer getestet
 
@@ -1870,8 +2190,6 @@ cat /var/mail/root
 
 <div class="page-break"></div>
 
-## Bash/Bash-Scripting 
-
 ### Einfaches Script zur Datumsausgabe
 
 
@@ -1909,8 +2227,6 @@ befehl1 || befehl2
 ```
 
 <div class="page-break"></div>
-
-## Timers/cronjobs 
 
 ### Cronjob - hourly einrichten
 
@@ -1990,8 +2306,6 @@ ls -la /var/log/scripting.log
 ```
 
 <div class="page-break"></div>
-
-## Literatur 
 
 ### Literatur
 
