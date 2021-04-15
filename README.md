@@ -70,6 +70,7 @@
      * [Paketmanager apt/dpkg](apt-dpkg.md) 
      * [Paketmanager rpm/yum](rpm-yum.md)
      * [Archive runterladen und entpacken](tar-download.md) 
+     * [Lokalen Mirrorserver aufsetzen](https://wiki.centos.org/HowTos/CreateLocalMirror)
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld](firewalld.md)
