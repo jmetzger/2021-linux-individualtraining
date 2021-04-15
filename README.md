@@ -1,4 +1,4 @@
-# Linux Basiswissen 
+# Linux Individual-Training
 
 ## Agenda 
 
