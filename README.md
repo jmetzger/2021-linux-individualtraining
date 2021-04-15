@@ -70,7 +70,8 @@
      * [Paketmanager apt/dpkg](apt-dpkg.md) 
      * [Paketmanager rpm/yum](rpm-yum.md)
      * [Archive runterladen und entpacken](tar-download.md) 
-     * [Lokalen Mirrorserver aufsetzen](https://wiki.centos.org/HowTos/CreateLocalMirror)
+     * [Lokalen Mirrorserver aufsetzen - Centos](https://wiki.centos.org/HowTos/CreateLocalMirror)
+     * [Installationsbeispiel Apache auf Centos](install-apache.md)
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld](firewalld.md)
