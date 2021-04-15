@@ -37,3 +37,20 @@ umask 0222
   0775 <- Diese Rechte werden verwendet
 
 ```
+
+## Maske während der Session setzten 
+
+```
+umask 0000
+```
+
+## Mask persistent setzen für meinen Benutzer (auch nach Neuanmeldung gültig) 
+
+```
+# Entweder mit Editor oder 
+# Achtung Zwei / 2 ! >> 
+echo "umask 0000" >> ~/.bashrc
+# Testen
+su - benutzer # benutzer ist der Name des Benutzer unter dem ich eingeloggt bin 
+
+```
