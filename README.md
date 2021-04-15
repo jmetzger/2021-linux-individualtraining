@@ -56,44 +56,44 @@
      * [Gegenüberstellung service etc/init.d/ systemctl](service-initd-systemctl.md)
   9. Partitionierung und Filesystem
      * [parted and mkfs.ext4](parted-mkfs.md)
-  10. Boot-Prozess und Kernel 
+ 10. Boot-Prozess und Kernel 
      * [Grub konfigurieren](grub.md)
      * [Kernel-Version anzeigen](kernel-version.md) 
      * [Kernel-Module laden/entladen/zeigen](kernel-modules.md) 
-  11. Hilfe 
+ 11. Hilfe 
      * [Hilfe zu Befehlen](help.md)
-  12. Grafische Oberfläche und Installation 
+ 12. Grafische Oberfläche und Installation 
      * [Gnome unter Ubuntu installieren](gnome-ubuntu.md) 
      * [X-Server - Ausgabe auf Windows umleiten](xserver-windows-client.md)
      * [Installations-Images-Server](https://ubuntu.com/download/server#download) 
-  13. Wartung und Aktualisierung
+ 13. Wartung und Aktualisierung
      * [Aktualisierung des Systems](update-upgrade.md)
      * [Paketmanager apt/dpkg](apt-dpkg.md) 
      * [Paketmanager rpm/yum](rpm-yum.md)
      * [Archive runterladen und entpacken](tar-download.md) 
      * [Lokalen Mirrorserver aufsetzen - Centos](https://wiki.centos.org/HowTos/CreateLocalMirror)
      * [Installationsbeispiel Apache auf Centos](install-apache.md)
-  14. Firewall und ports
+ 14. Firewall und ports
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld](firewalld.md)
      * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
-  15. Netzwerk/Dienste 
+ 15. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
      * [IP-Adresse auslesen](ip-adresse-auslesen.md) 
      * [Netzwerk unter Centos konfigurieren - nmtui](nmtui.md)
      * [Auf welchen Ports lauscht mein Server](lsof.md) 
      * [Netzwerkabel drin/nicht drin?](netzwerkkarte-kabel-drin.md)
-  16. Tools/Verschiedens 
+ 16. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](umask-002-022-why.md)
      * [lokale Mails installieren](local-mail.md)
-  17. Bash/Bash-Scripting 
+ 17. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
      * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
-  18. Timers/cronjobs 
+ 18. Timers/cronjobs 
      * [Cronjob - hourly einrichten](cronjob-hourly.md)
      * [cronjob (zentral) - crond](crond.md) 
-  19. Literatur 
+ 19. Literatur 
      * [Literatur](literatur.md) 
 
 
