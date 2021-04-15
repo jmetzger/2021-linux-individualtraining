@@ -39,7 +39,7 @@ firewall-cmd --reload
 # Mit Browser testen 
 ```
 
-## Apache started nicht wg Port-Änderung (Port: 82) 
+## Apache started nicht wg Port-Änderung (Port: 82)  - Quick and Dirty Lösung
 
 ```
 # Es kommt ein Fehler bei Apache port 82 (Listen 82) 
@@ -61,4 +61,11 @@ SELINUX=permissive
 # oder wenn man generell selinux nicht einsetzten möchte:
 SELINUX=disabled 
 # Danach rebooten 
+```
+
+## Apache started nicht wg Port-Änderung (Port: 82)  - Nice and Smooth (better!) 
+
+```
+semanage port -a -t http_port_t -p tcp 82 
+systemctl restart httpd 
 ```
