@@ -18,6 +18,10 @@ systemctl -t service | grep ^apache
 
 # Dienst aktivieren
 systemctl enable apache2 
+# Dienst aktivieren und gleich starten 
+systemctl enable --now apache2 # Ubuntu 
+systemctl enable --now httpd # Centos / Redhat 
+
 # Ist Dienst aktiviert 
 systemctl is-enabled apache2
 enabled
