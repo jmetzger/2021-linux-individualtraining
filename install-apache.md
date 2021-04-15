@@ -67,5 +67,6 @@ SELINUX=disabled
 
 ```
 semanage port -a -t http_port_t -p tcp 82 
+setenforce 1 
 systemctl restart httpd 
 ```
