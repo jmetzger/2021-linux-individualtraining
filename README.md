@@ -29,6 +29,7 @@
      * [Grafisch Navigieren auf der Kommandozeile - mc](mc.md) 
   1. Systemadministration 
      * [Hostname setzen/abfragen](hostnamectl.md) 
+     * [ssh absichern](ssh-absichern.md)
   1. Prozesse 
      * [Prozesse anzeigen - ps/pstree -p und top](prozesse.md)
   1. Benutzer, Gruppen und Rechte 
