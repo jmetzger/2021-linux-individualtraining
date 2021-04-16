@@ -50,6 +50,17 @@ shutdown -h now
 poweroff
 systemctl poweroff 
 ```
+## Wie sehe ich bei einem neu installierten Serverdienst (z.B. httpd / mariadb) wie der Dienst heisst ?
+
+```
+# ACHTUNG: Direkt nach der Installation klappt folgendes nicht  !:: 
+# systemctl list-units -t service | grep -i mariadb # weil der Service noch nicht aktiviert ist.
+
+# Stattdessen nehme dann:
+systemctl list-unit-files -t service | grep -i mariadb # Hier sucht er in allen Konfigurationsdateien  
+
+
+```
 
 ## Wie sehe ich, wie ein Service konfiguriert ist / Dienstekonfiguration anzeigen ? 
 
