@@ -100,4 +100,5 @@
      * [Literatur](literatur.md) 
      * [Linux Sicherheit](https://schulung.t3isp.de/documents/linux-security.pdf)
      * [sssd gegen ADS](https://access.redhat.com/articles/3023951)
+     * [realmd gegen ADS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/index#sssd-ad-proc)
 
