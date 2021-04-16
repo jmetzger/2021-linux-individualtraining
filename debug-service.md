@@ -30,7 +30,12 @@ journalctl -u mariadb.service
 
 # Nicht fündig -> Schritt 4:
 # Spezifisches Log von Dienst suchen 
+#
+# z.B. 
+# grep -ir mariadb /var/log 
 # und evtl. LogLevel von Dienst hochsetzen
+#
+# ODER: 
 # z.B. bei mariadb (durch Internetrecherche herausfinden) 
 less /var/log/mysql/error.log 
 
@@ -40,6 +45,13 @@ less /var/log/mysql/error.log
 /var/log/syslog
 # REdhat/Centos 
 /var/log/messages 
+```
+
+## Falsche Option in welcher Konfigurationsdatei 
+
+```
+# wir haben die falsche Option gummitulpe drin 
+grep -ir gummitulpe /etc 
 ```
 
 ## Wie verfahren bei SystemV 
