@@ -8,7 +8,13 @@
 [root@centos8-01 sbin]# cat scan.sh
 #!/bin/bash
 IP_RANGE=192.168.56.100-103
-nmap -A -T4 $IP_RANGE
+DATESTAMP=$(date +'%Y%m%d_%H%M%S')
+LOGTO=/var/log/scan-$DATESTAMP.log
+
+#nmap -A -T4 $IP_RANGE
+echo "Starte nmap scan for $IP_RANGE"
+nmap -Pn --open $IP_RANGE > $LOGTO
+echo "Done....Written log to: $LOGTO"
 
 # Schritt 2: service erstellen
 # systemctl edit --force --full scan.service 
