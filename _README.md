@@ -29,74 +29,78 @@
      * [Grafisch Navigieren auf der Kommandozeile - mc](#grafisch-navigieren-auf-der-kommandozeile---mc)
   1. Systemadministration 
      * [Hostname setzen/abfragen](#hostname-setzenabfragen)
-  3. Prozesse 
-     * [Prozesse anzeigen - ps/pstree -p](#prozesse-anzeigen---pspstree--p)
-  4. Benutzer, Gruppen und Rechte 
+     * [ssh absichern](#ssh-absichern)
+  1. Prozesse 
+     * [Prozesse anzeigen - ps/pstree -p und top](#prozesse-anzeigen---pspstree--p-und-top)
+  1. Benutzer, Gruppen und Rechte 
      * [Rechte](#rechte)
      * [Dateien für Benutzer und Gruppen](#dateien-für-benutzer-und-gruppen)
      * [Benutzer anlegen](#benutzer-anlegen)
      * [Wie funktioniert die Maske (umask)](#wie-funktioniert-die-maske-umask)
      * [sudo Benutzer erstellen](#sudo-benutzer-erstellen)
-  5. Dateimanipulation/Unix Tools
+  1. Dateimanipulation/Unix Tools
      * [Anfang oder Ende einer Datei/Ausgabe anzeigen](#anfang-oder-ende-einer-dateiausgabe-anzeigen)
      * [cat/head/tail-Beginn/Ende einer Datei anzeigen](#catheadtail-beginnende-einer-datei-anzeigen)
      * [zcat - Inhalte einer mit gzip komprimierten Datei anzeigen](#zcat---inhalte-einer-mit-gzip-komprimierten-datei-anzeigen)
      * [wc - Zeilen zählen](#wc---zeilen-zählen)
      * [Bestimmte Zeilen aus Datei anzeigen - grep](#bestimmte-zeilen-aus-datei-anzeigen---grep)
      * [Erweiterte Suche mit Grep](#erweiterte-suche-mit-grep)
-  6. Logs/Loganalyse
+  1. Logs/Loganalyse
      * [Logfile beobachten](#logfile-beobachten)
      * [Dienste debuggen](#dienste-debuggen)
      * [Rsyslog](#rsyslog)
-  7. Variablen
+  1. Variablen
      * [Setzen und verwenden von Variablen](#setzen-und-verwenden-von-variablen)
-  8. Dienste/Runlevel(Targets verwalten) 
+  1. Dienste/Runlevel(Targets verwalten) 
      * [Die wichtigsten systemctl/service](#die-wichtigsten-systemctlservice)
      * [Systemctl - timers](#systemctl---timers)
      * [Gegenüberstellung service etc/init.d/ systemctl](#gegenüberstellung-service-etcinit.d-systemctl)
-  9. Partitionierung und Filesystem
+  1. Partitionierung und Filesystem
      * [parted and mkfs.ext4](#parted-and-mkfs.ext4)
- 10. Boot-Prozess und Kernel 
+  1. Boot-Prozess und Kernel 
      * [Grub konfigurieren](#grub-konfigurieren)
      * [Kernel-Version anzeigen](#kernel-version-anzeigen)
      * [Kernel-Module laden/entladen/zeigen](#kernel-module-ladenentladenzeigen)
- 11. Hilfe 
+  1. Hilfe 
      * [Hilfe zu Befehlen](#hilfe-zu-befehlen)
- 12. Grafische Oberfläche und Installation 
+  1. Grafische Oberfläche und Installation 
      * [Gnome unter Ubuntu installieren](#gnome-unter-ubuntu-installieren)
      * [X-Server - Ausgabe auf Windows umleiten](#x-server---ausgabe-auf-windows-umleiten)
      * [Installations-Images-Server](https://ubuntu.com/download/server#download)
- 13. Wartung und Aktualisierung
+  1. Wartung und Aktualisierung
      * [Aktualisierung des Systems](#aktualisierung-des-systems)
      * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
      * [Paketmanager rpm/yum](#paketmanager-rpmyum)
      * [Archive runterladen und entpacken](#archive-runterladen-und-entpacken)
      * [Lokalen Mirrorserver aufsetzen - Centos](https://wiki.centos.org/HowTos/CreateLocalMirror)
      * [Installationsbeispiel Apache auf Centos](#installationsbeispiel-apache-auf-centos)
- 14. Firewall und ports
+  1. Firewall und ports
      * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
      * [firewalld](#firewalld)
      * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
- 15. Netzwerk/Dienste 
+  1. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
      * [IP-Adresse auslesen](#ip-adresse-auslesen)
      * [Netzwerk unter Centos konfigurieren - nmtui](#netzwerk-unter-centos-konfigurieren---nmtui)
      * [Auf welchen Ports lauscht mein Server](#auf-welchen-ports-lauscht-mein-server)
      * [Netzwerkabel drin/nicht drin?](#netzwerkabel-drinnicht-drin)
- 16. Tools/Verschiedens 
+     * [Welcher DHCP-Server über NetworkManager](#welcher-dhcp-server-über-networkmanager)
+  1. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](#warum-umask-002-und-0002----geschichte)
      * [lokale Mails installieren](#lokale-mails-installieren)
- 17. Bash/Bash-Scripting 
+  1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](#einfaches-script-zur-datumsausgabe)
      * [Ausführen/Verketten von mehreren Befehlen](#ausführenverketten-von-mehreren-befehlen)
- 18. Timers/cronjobs 
+  1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
      * [cronjob (zentral) - crond](#cronjob-zentral---crond)
- 19. Literatur 
+     * [Beispiel-Regelmäßiges Scannen mit nmap](#beispiel-regelmäßiges-scannen-mit-nmap)
+  1. Literatur 
      * [Literatur](#literatur)
-
-
+     * [Linux Sicherheit](https://schulung.t3isp.de/documents/linux-security.pdf)
+     * [sssd gegen ADS](https://access.redhat.com/articles/3023951)
+     * [realmd gegen ADS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/index#sssd-ad-proc)
 
 
 <div class="page-break"></div>
@@ -631,7 +635,53 @@ su - root # bzw. su - benutzer
 
 <div class="page-break"></div>
 
-### Prozesse anzeigen - ps/pstree -p
+### ssh absichern
+
+
+### sshd_config // Server
+
+```
+##/etc/ssh/sshd_config 
+X11Forwarding no
+
+## if possible - no one can login with password
+PasswordAuthentication no 
+PermitRootLogin no 
+## user must belong to a specific group to be allowed to login
+AllowGroups wheel
+## if sftp is not need comment it - defaults to no 
+## Subsystem     sftp    /usr/libexec/openssh/sftp-server
+```
+
+```
+Restart sshd 
+systemctl restart sshd 
+```
+
+### Setup private/public key authentication 
+
+```
+## Authentication with password must be possible
+## When setting it up 
+## Disable PasswordAuthentication afterwards 
+
+## server1 client 
+## as user kurs
+ssh-keygen 
+## set password set important
+ssh-copy-id kurs@server2 
+
+### Now you can login with public/private key 
+ssh kurs@server2 
+
+```
+
+
+<div class="page-break"></div>
+
+## Prozesse 
+
+### Prozesse anzeigen - ps/pstree -p und top
 
 
 ### Prozesse anzeigen 
@@ -639,6 +689,18 @@ su - root # bzw. su - benutzer
 ```
 ps -ef 
 ps aux  # x alle Prozesse anzeigen, die nicht an ein Terminal gebunden sind 
+```
+
+### Prozesse anzeigen für Benutzer 
+
+```
+ps -u kurs -o pid,cmd # -o für felder der ausgabe 
+```
+
+### top für bestimmten user 
+
+```
+top -U kurs 
 ```
 
 ### systemctl (läuft Dienst) 
@@ -655,6 +717,8 @@ pstree -p
 ```
 
 <div class="page-break"></div>
+
+## Benutzer, Gruppen und Rechte 
 
 ### Rechte
 
@@ -808,7 +872,7 @@ su - benutzer # benutzer ist der Name des Benutzer unter dem ich eingeloggt bin
 ### sudo Benutzer erstellen
 
 
-### Benutzer zum Sudo benutzer machen
+### Benutzer zum Sudo benutzer machen (Ubuntu/Debian) 
 
 ```
 adduser newuser
@@ -821,7 +885,22 @@ id # shows the same but more info
 sudo su -
 ```
 
+### Benutzer zum sudo benutzer machen (Redhat/Centos) 
+
+```
+adduser newuser
+usermod -aG wheel newuser
+### testing 
+su - newuser
+groups # see if we are in groups sudo 
+id # shows the same but more info 
+## need to enter password here 
+sudo su -
+```
+
 <div class="page-break"></div>
+
+## Dateimanipulation/Unix Tools
 
 ### Anfang oder Ende einer Datei/Ausgabe anzeigen
 
@@ -1084,6 +1163,8 @@ grep  "[[:digit:]]\{5\}" /root/namen
 
 <div class="page-break"></div>
 
+## Logs/Loganalyse
+
 ### Logfile beobachten
 
 
@@ -1100,6 +1181,19 @@ logger meine_nachricht
 
 ### Dienste debuggen
 
+
+### Prerequisites 
+
+```
+## Install mariadb-server - Centos  
+yum install mariadb-server 
+
+## Find out the service name 
+systemctl list-unit-files -t service | grep mariadb 
+
+## 
+
+```
 
 ### Walkthrough 
 
@@ -1118,7 +1212,12 @@ journalctl -u mariadb.service
 
 ## Nicht fündig -> Schritt 4:
 ## Spezifisches Log von Dienst suchen 
+##
+## z.B. 
+## grep -ir mariadb /var/log 
 ## und evtl. LogLevel von Dienst hochsetzen
+##
+## ODER: 
 ## z.B. bei mariadb (durch Internetrecherche herausfinden) 
 less /var/log/mysql/error.log 
 
@@ -1128,6 +1227,13 @@ less /var/log/mysql/error.log
 /var/log/syslog
 ## REdhat/Centos 
 /var/log/messages 
+```
+
+### Falsche Option in welcher Konfigurationsdatei 
+
+```
+## wir haben die falsche Option gummitulpe drin 
+grep -ir gummitulpe /etc 
 ```
 
 ### Wie verfahren bei SystemV 
@@ -1165,6 +1271,8 @@ Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server
 
 <div class="page-break"></div>
 
+## Variablen
+
 ### Setzen und verwenden von Variablen
 
 
@@ -1193,6 +1301,8 @@ Ref: https://www.tecmint.com/setup-rsyslog-client-to-send-logs-to-rsyslog-server
 ```
 
 <div class="page-break"></div>
+
+## Dienste/Runlevel(Targets verwalten) 
 
 ### Die wichtigsten systemctl/service
 
@@ -1246,6 +1356,17 @@ shutdown -h now
 ## Poweroff 
 poweroff
 systemctl poweroff 
+```
+### Wie sehe ich bei einem neu installierten Serverdienst (z.B. httpd / mariadb) wie der Dienst heisst ?
+
+```
+## ACHTUNG: Direkt nach der Installation klappt folgendes nicht  !:: 
+## systemctl list-units -t service | grep -i mariadb # weil der Service noch nicht aktiviert ist.
+
+## Stattdessen nehme dann:
+systemctl list-unit-files -t service | grep -i mariadb # Hier sucht er in allen Konfigurationsdateien  
+
+
 ```
 
 ### Wie sehe ich, wie ein Service konfiguriert ist / Dienstekonfiguration anzeigen ? 
@@ -1431,6 +1552,8 @@ service rsyslog status
 
 <div class="page-break"></div>
 
+## Partitionierung und Filesystem
+
 ### parted and mkfs.ext4
 
 
@@ -1479,6 +1602,8 @@ mount | grep platte  # taucht platte hier auf ?
 ```
 
 <div class="page-break"></div>
+
+## Boot-Prozess und Kernel 
 
 ### Grub konfigurieren
 
@@ -1595,6 +1720,8 @@ N # letzter Treffer
 
 <div class="page-break"></div>
 
+## Grafische Oberfläche und Installation 
+
 ### Gnome unter Ubuntu installieren
 
 
@@ -1615,6 +1742,8 @@ sudo tasksel install ubuntu-desktop
 ### Installations-Images-Server
 
   * https://ubuntu.com/download/server#download
+
+## Wartung und Aktualisierung
 
 ### Aktualisierung des Systems
 
@@ -1840,6 +1969,8 @@ systemctl restart httpd
 
 <div class="page-break"></div>
 
+## Firewall und ports
+
 ### ufw (uncomplicated firewall)
 
 
@@ -2049,6 +2180,8 @@ firewall-cmd --runtime-to-permanent
 
 ### Scannen und Überprüfen mit telnet/nmap
 
+## Netzwerk/Dienste 
+
 ### IP-Adresse von DHCP-Server holen (quick-and-dirty)
 
 
@@ -2148,6 +2281,28 @@ nmcli conn down enp0s8
 
 <div class="page-break"></div>
 
+### Welcher DHCP-Server über NetworkManager
+
+
+```
+/etc/NetworkManager/NetworkManager.conf 
+level=TRACE
+domains=ALL
+
+## Restart des NetworkManager
+systemctl restart NetworkManager 
+
+journalctl -u NetworkManager | grep received | less 
+
+## Apr 16 12:46:10 centos8-01 NetworkManager[28829]: <debug> [1618569970.5898] dhcp4 (enp0s8): received ACK of 192.168.56.101 from 0.0.0.0
+
+
+```
+
+<div class="page-break"></div>
+
+## Tools/Verschiedens 
+
 ### Remote Desktop für Linux / durch Teilnehmer getestet
 
   * https://wiki.ubuntuusers.de/Remmina/
@@ -2190,6 +2345,8 @@ cat /var/mail/root
 
 <div class="page-break"></div>
 
+## Bash/Bash-Scripting 
+
 ### Einfaches Script zur Datumsausgabe
 
 
@@ -2227,6 +2384,8 @@ befehl1 || befehl2
 ```
 
 <div class="page-break"></div>
+
+## Timers/cronjobs 
 
 ### Cronjob - hourly einrichten
 
@@ -2307,6 +2466,75 @@ ls -la /var/log/scripting.log
 
 <div class="page-break"></div>
 
+### Beispiel-Regelmäßiges Scannen mit nmap
+
+
+### Walkthrough 
+
+```
+## Schritt 1:
+## /usr/local/sbin/scan.sh
+[root@centos8-01 sbin]# cat scan.sh
+##!/bin/bash
+IP_RANGE=192.168.56.100-103
+DATESTAMP=$(date +'%Y%m%d_%H%M%S')
+LOGTO=/var/log/scan-$DATESTAMP.log
+
+##nmap -A -T4 $IP_RANGE
+echo "Starte nmap scan for $IP_RANGE"
+nmap -Pn --open $IP_RANGE > $LOGTO
+echo "Done....Written log to: $LOGTO"
+
+## Schritt 2: service erstellen
+## systemctl edit --force --full scan.service 
+## /etc/systemd/system/scan.service
+[Unit]
+Description=nmap scanning of environment
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/scan.sh
+##RemainAfterExit=true
+StandardOutput=journal
+
+### nach dem Speichern kann man das bereits testen mit 
+## systemctl start scan.service 
+### Ergebnis im Journal 
+## journalctl -u scan.service 
+
+## Schritt 3: 
+## Timer angelegt :
+## systemctl edit --force --full scan.timer 
+## /etc/systemd/system/scan.timer
+[Unit]
+Description=Timer for Scan Service
+
+[Timer]
+OnCalendar=*:0/5
+
+[Install]
+WantedBy=basic.target
+
+## Schritt 4:
+## Timer starten und aktivieren
+systemctl enable scan.timer 
+systemctl start scan.timer 
+
+## Schritt 5:
+## Beobachten und glücklich sein 
+systemctl list-timers 
+## <- taucht der Timer dort auf 
+
+## Schritt 6:
+## Reboot 
+## und Danch : taucht der timer auf ? 
+systemctl list-timers 
+```
+
+<div class="page-break"></div>
+
+## Literatur 
+
 ### Literatur
 
 ### Literatur 
@@ -2321,3 +2549,15 @@ ls -la /var/log/scripting.log
   * [..ansonsten Google :o)](https://www.google.com/search?q=bash+cheatsheet)
 
 <div class="page-break"></div>
+
+### Linux Sicherheit
+
+  * https://schulung.t3isp.de/documents/linux-security.pdf
+
+### sssd gegen ADS
+
+  * https://access.redhat.com/articles/3023951
+
+### realmd gegen ADS
+
+  * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/index#sssd-ad-proc
