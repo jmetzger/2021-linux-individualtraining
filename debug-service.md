@@ -5,6 +5,12 @@
 ```
 # Install mariadb-server - Centos  
 yum install mariadb-server 
+
+# Find out the service name 
+systemctl list-unit-files -t service | grep mariadb 
+
+# 
+
 ```
 
 ## Walkthrough 
