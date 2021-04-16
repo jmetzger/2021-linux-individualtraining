@@ -1,5 +1,12 @@
 # Debug Service 
 
+## Prerequisites 
+
+```
+# Install mariadb-server - Centos  
+yum install mariadb-server 
+```
+
 ## Walkthrough 
 
 ```
