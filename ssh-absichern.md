@@ -33,7 +33,7 @@ ssh-keygen
 # set password set important
 ssh-copy-id kurs@server2 
 
-## Now you an login with public/private key 
+## Now you can login with public/private key 
 ssh kurs@server2 
 
 ```
