@@ -30,7 +30,7 @@
   1. Systemadministration 
      * [Hostname setzen/abfragen](hostnamectl.md) 
   3. Prozesse 
-     * [Prozesse anzeigen - ps/pstree -p](prozesse.md)
+     * [Prozesse anzeigen - ps/pstree -p und top](prozesse.md)
   4. Benutzer, Gruppen und Rechte 
      * [Rechte](rechte.md) 
      * [Dateien für Benutzer und Gruppen](files-users-groups.md) 
