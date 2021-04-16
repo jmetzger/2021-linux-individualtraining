@@ -38,6 +38,3 @@ ssh kurs@server2
 
 ```
 
-
-
-```
