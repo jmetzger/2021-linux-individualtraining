@@ -83,6 +83,7 @@
      * [Netzwerk unter Centos konfigurieren - nmtui](nmtui.md)
      * [Auf welchen Ports lauscht mein Server](lsof.md) 
      * [Netzwerkabel drin/nicht drin?](netzwerkkarte-kabel-drin.md)
+     * [Welcher DHCP-Server über NetworkManager](dhcp-server.md)
  16. Tools/Verschiedens 
      * [Remote Desktop für Linux / durch Teilnehmer getestet](https://wiki.ubuntuusers.de/Remmina/)
      * [Warum umask 002 und 0002 ? - Geschichte](umask-002-022-why.md)
