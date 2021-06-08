@@ -1,7 +1,5 @@
 # Linux Individual-Training
 
-https://github.com/jmetzger/2021-linux-individualtraining
-
 ## Agenda 
 
   1. Distributionen 
