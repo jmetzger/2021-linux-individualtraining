@@ -105,4 +105,5 @@
      * [realmd gegen ADS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/index#sssd-ad-proc)
   1. Tipps&Tricks 
      * [Output von terminal sesssion inkl. SSH-Verbindung loggen](https://leszekjaskierny.wordpress.com/2017/01/27/mac-x-os-log-terminal-session-to-file/)
+     * [Vagrant (Windows/OS X)](vagrant.md) 
 
