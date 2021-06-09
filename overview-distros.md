@@ -12,6 +12,11 @@ Fedora
 Redhat Developer Version: https://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available#
 
 ```
+#### Redhat Developer Program
+
+  * https://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available#
+
+
 ### Debian Familie 
 
 ```
