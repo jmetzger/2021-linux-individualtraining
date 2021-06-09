@@ -76,7 +76,8 @@
      * [Installationsbeispiel Apache auf Centos](install-apache.md)
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](ufw.md)
-     * [firewalld](firewalld.md)
+     * [firewalld - Ubuntu](firewalld.md)
+     * [firewalld - Centos 8](firewalld-centos8.md)
      * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
   1. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
