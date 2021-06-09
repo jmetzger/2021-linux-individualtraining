@@ -83,7 +83,8 @@ firewall-cmd --reload
 ```
 
 # /etc/httpd/conf/httpd.conf 
-# add port Listen 82 
+# add port 
+# Listen 82 
 # Try to restart - not working port cannot be bound 
 sealert -a /var/log/audit/audit.log 
 # we will get this info to allow this port 
