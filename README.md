@@ -102,4 +102,6 @@
      * [Linux Sicherheit](https://schulung.t3isp.de/documents/linux-security.pdf)
      * [sssd gegen ADS](https://access.redhat.com/articles/3023951)
      * [realmd gegen ADS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/index#sssd-ad-proc)
+  1. Tipps&Tricks 
+     * [Output von terminal sesssion inkl. SSH-Verbindung loggen](https://leszekjaskierny.wordpress.com/2017/01/27/mac-x-os-log-terminal-session-to-file/)
 
