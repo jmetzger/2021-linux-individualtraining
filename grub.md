@@ -12,7 +12,8 @@ vi grub
 GRUB_TIMEOUT=5
 
 # Step 2
-update-grub 
+update-grub # Version for ubuntu/debian 
+grub2-mkconfig /boot/grub2/grub.cfg  # Version for centos 
 
 # Step 3 - reboot 
 
