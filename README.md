@@ -45,6 +45,7 @@
      * [wc - Zeilen zählen](wc.md)
      * [Bestimmte Zeilen aus Datei anzeigen - grep](grep.md)
      * [Erweiterte Suche mit Grep](grep-extended.md)
+     * [Find](find.md)
   1. Logs/Loganalyse
      * [Logfile beobachten](tailf.md)
      * [Dienste debuggen](debug-service.md)
