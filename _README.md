@@ -45,6 +45,7 @@
      * [wc - Zeilen zählen](#wc---zeilen-zählen)
      * [Bestimmte Zeilen aus Datei anzeigen - grep](#bestimmte-zeilen-aus-datei-anzeigen---grep)
      * [Erweiterte Suche mit Grep](#erweiterte-suche-mit-grep)
+     * [Find](#find)
   1. Logs/Loganalyse
      * [Logfile beobachten](#logfile-beobachten)
      * [Dienste debuggen](#dienste-debuggen)
@@ -76,7 +77,8 @@
      * [Installationsbeispiel Apache auf Centos](#installationsbeispiel-apache-auf-centos)
   1. Firewall und ports
      * [ufw (uncomplicated firewall)](#ufw-uncomplicated-firewall)
-     * [firewalld](#firewalld)
+     * [firewalld - Ubuntu](#firewalld---ubuntu)
+     * [firewalld - Centos 8](#firewalld---centos-8)
      * [Scannen und Überprüfen mit telnet/nmap](#scannen-und-überprüfen-mit-telnetnmap)
   1. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
@@ -96,11 +98,19 @@
      * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
      * [cronjob (zentral) - crond](#cronjob-zentral---crond)
      * [Beispiel-Regelmäßiges Scannen mit nmap](#beispiel-regelmäßiges-scannen-mit-nmap)
-  1. Literatur 
+  1. Literatur/Documentation 
      * [Literatur](#literatur)
-     * [Linux Sicherheit](https://schulung.t3isp.de/documents/linux-security.pdf)
+     * [Linux Sicherheit/SELinux/nmap](https://schulung.t3isp.de/documents/linux-security.pdf)
      * [sssd gegen ADS](https://access.redhat.com/articles/3023951)
      * [realmd gegen ADS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/index#sssd-ad-proc)
+     * [MariaDB Galera Cluster mit Ansible](https://github.com/jmetzger/ansible-galera-cluster-maxscale)
+     * [Ansible Module](https://docs.ansible.com/ansible/2.9/modules)
+     * [Linux Hardening - TelekomSecurity](https://github.com/telekomsecurity/TelekomSecurity.Compliance.Framework)
+  
+  1. Tipps&Tricks 
+     * [Output von terminal sesssion inkl. SSH-Verbindung loggen](https://leszekjaskierny.wordpress.com/2017/01/27/mac-x-os-log-terminal-session-to-file/)
+     * [Vagrant (Windows/OS X)](#vagrant-windowsos-x)
+     * [bash-profile testen](#bash-profile-testen)
 
 
 <div class="page-break"></div>
@@ -118,7 +128,15 @@
 Centos (bis 2021 wie Redhat, danach z.B. AlmaLinux)
 Redhat.  — rpm / (yum / dnf) 
 Fedora 
+
+Redhat Developer Version: https://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available#
+
 ```
+##### Redhat Developer Program
+
+  * https://developers.redhat.com/blog/2016/03/31/no-cost-rhel-developer-subscription-now-available#
+
+
 #### Debian Familie 
 
 ```
@@ -1163,6 +1181,27 @@ grep  "[[:digit:]]\{5\}" /root/namen
 
 <div class="page-break"></div>
 
+### Find
+
+
+### Simple find command 
+
+```
+## find directories with specific name 
+find / -name tmpfiles.d -type d 
+```
+
+### Find files by inode and delete them 
+
+```
+## helpful when file name is cryptic
+## see what the inode with 
+## ls -lai # -i for inode number 
+find -inum 12604361 -type f -delete
+```
+
+<div class="page-break"></div>
+
 ## Logs/Loganalyse
 
 ### Logfile beobachten
@@ -1620,7 +1659,8 @@ vi grub
 GRUB_TIMEOUT=5
 
 ## Step 2
-update-grub 
+update-grub # Version for ubuntu/debian 
+grub2-mkconfig -o /boot/grub2/grub.cfg  # Version for centos 
 
 ## Step 3 - reboot 
 
@@ -1860,10 +1900,16 @@ yum search httpd
 yum install httpd 
 
 ## Installation updaten 
-yum update 
+yum upgrade # yum update is still available but not documented 
 ### automatisch fragen bejahen 
 yum -y update 
 
+```
+
+### Welche Paket stellt einen bestimmten Befehl zur Verfügung ? 
+
+```
+yum whatprovides sealert 
 ```
 
 <div class="page-break"></div>
@@ -1962,9 +2008,28 @@ SELINUX=disabled
 ### Apache started nicht wg Port-Änderung (Port: 82)  - Nice and Smooth (better!) 
 
 ```
+## Falls sealert nicht installiert ist -> sealert -> command not found 
+yum whatprovides sealert 
+
+sealert -a /var/log/audit/audit.log > /root/report
+## In der Datei finden wir Handlungsanweisungen 
+
+## Welche port-typen gibt es für http
+semanage port -l | grep http
+## Wir entscheiden uns für http_port_t weil hier auch die 80 auftaucht 
 semanage port -a -t http_port_t -p tcp 82 
 setenforce 1 
 systemctl restart httpd 
+
+## Don't forget to add firewall rules 
+firewall-cmd --list-all # is the port listed here ? 
+firewall-cmd --add-port=82/tcp --zone=public --permanent # Sets in configuration but not in runtime 
+firewall-cmd --reload 
+
+## Now test with and your public ip 
+## get it with 
+ip a 
+
 ```
 
 <div class="page-break"></div>
@@ -2018,7 +2083,7 @@ ufw delete 1
 
 <div class="page-break"></div>
 
-### firewalld
+### firewalld - Ubuntu
 
 
 ### Install firewalld and restrict ufw 
@@ -2131,6 +2196,152 @@ firewall-cmd --reload
 ```
 
 ### Enable / Disabled icmp 
+```
+firewall-cmd --get-icmptypes
+## none present yet 
+firewall-cmd --zone=public --add-icmp-block-inversion --permanent
+firewall-cmd --reload
+```
+
+### Working with rich rules 
+```
+## Documentation 
+## man firewalld.richlanguage
+
+## throttle connectons 
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=10.0.50.10/32 service name=http log level=notice prefix="firewalld rich rule INFO:   " limit value="100/h" accept' 
+firewall-cmd --reload # 
+firewall-cmd --zone=public --list-all
+
+## port forwarding 
+firewall-cmd --get-active-zones
+firewall-cmd --zone=public --list-all
+firewall-cmd --permanent --zone=public --add-rich-rule='rule family=ipv4 source address=10.0.50.10 forward-port port=42343 protocol=tcp to-port=22'
+firewall-cmd --reload 
+firewall-cmd --zone=public --list-all
+firewall-cmd --remove-service=ssh --zone=public
+
+## 
+
+
+## list only the rich rules 
+firewall-cmd --zone=public --list-rich-rules
+
+## persist all runtime rules 
+firewall-cmd --runtime-to-permanent
+
+
+
+
+```
+
+
+### References 
+
+  * https://www.linuxjournal.com/content/understanding-firewalld-multi-zone-configurations#:~:text=Going%20line%20by%20line%20through,or%20source%20associated%20with%20it.
+  * https://www.answertopia.com/ubuntu/basic-ubuntu-firewall-configuration-with-firewalld/
+
+<div class="page-break"></div>
+
+### firewalld - Centos 8
+
+
+### Is firewalld running ?
+```
+## is it set to enabled ?
+systemctl status firewalld 
+firewall-cmd --state
+```
+
+### Command to control firewalld 
+  
+  * firewall-cmd 
+
+### Best way to add a new rule 
+```
+## Step1: do it persistent -> written to disk 
+firewall-cmd --add-port=82/tcp --persistant 
+
+## Step 2: + reload firewall 
+firewall-cmd --reload 
+```
+
+### Zones documentation 
+
+man firewalld.zones 
+
+### Zones available 
+
+```
+firewall-cmd --get-zones 
+block dmz drop external home internal public trusted work
+```
+
+### Active Zones 
+
+```
+firewall-cmd --get-active-zones
+## in our case empty 
+```
+
+### Show information about all zones that are used 
+```
+firewall-cmd --list-all 
+firewall-cmd --list-all-zones 
+```
+
+
+### Add Interface to Zone ~ Active Zone 
+
+```
+firewall-cmd --zone=public --add-interface=enp0s3 --permanent 
+firewall-cmd --reload 
+firewall-cmd --get-active-zones 
+public
+  interfaces: enp0s3
+
+```
+### Default Zone 
+
+```
+## if not specifically mentioned when using firewall-cmd
+## .. add things to this zone 
+firewall-cmd --get-default-zone
+public
+
+```
+
+### Show services 
+```
+firewall-cmd --get-services 
+```
+### Adding/Removing a service 
+
+```
+firewall-cmd --permanent --zone=public --add-service=ssh
+firewall-cmd --reload 
+firewall-cmd --permanent --zone=public --remove-service=ssh
+firewall-cmd --reload 
+```
+
+### Walkthrough apache / adding Port (Centos 8 / Redhat 8 with enabled SELinux (by default))
+
+```
+
+## /etc/httpd/conf/httpd.conf 
+## add port 
+## Listen 82 
+## Try to restart - not working port cannot be bound 
+sealert -a /var/log/audit/audit.log 
+## we will get this info to allow this port 
+semanage port -a -t http_port_t -p tcp 82
+## start apache 
+systemctl start httpd
+firewall-cmd --add-port=82/tcp --zone=public --permanent
+
+```
+
+### Enable / Disabled icm 
 ```
 firewall-cmd --get-icmptypes
 ## none present yet 
@@ -2294,7 +2505,7 @@ systemctl restart NetworkManager
 
 journalctl -u NetworkManager | grep received | less 
 
-## Apr 16 12:46:10 centos8-01 NetworkManager[28829]: <debug> [1618569970.5898] dhcp4 (enp0s8): received ACK of 192.168.56.101 from 0.0.0.0
+## Apr 16 12:46:10 centos8-01 NetworkManager[28829](enp0s8): received ACK of 192.168.56.101 from 0.0.0.0
 
 
 ```
@@ -2533,7 +2744,7 @@ systemctl list-timers
 
 <div class="page-break"></div>
 
-## Literatur 
+## Literatur/Documentation 
 
 ### Literatur
 
@@ -2550,7 +2761,7 @@ systemctl list-timers
 
 <div class="page-break"></div>
 
-### Linux Sicherheit
+### Linux Sicherheit/SELinux/nmap
 
   * https://schulung.t3isp.de/documents/linux-security.pdf
 
@@ -2561,3 +2772,70 @@ systemctl list-timers
 ### realmd gegen ADS
 
   * https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/index#sssd-ad-proc
+
+### MariaDB Galera Cluster mit Ansible
+
+  * https://github.com/jmetzger/ansible-galera-cluster-maxscale
+
+### Ansible Module
+
+  * https://docs.ansible.com/ansible/2.9/modules
+
+### Linux Hardening - TelekomSecurity
+
+  * https://github.com/telekomsecurity/TelekomSecurity.Compliance.Framework
+
+## Tipps&Tricks 
+
+### Output von terminal sesssion inkl. SSH-Verbindung loggen
+
+  * https://leszekjaskierny.wordpress.com/2017/01/27/mac-x-os-log-terminal-session-to-file/
+
+### Vagrant (Windows/OS X)
+
+
+### OSX 
+
+```
+## Install virtualbox
+## Install vagrant -> vagrantup.com 
+
+## Go on the commandline -> terminal
+cd 
+mkdir centos8-directory 
+cd centos8-directory
+vagrant init centos/8 
+vagrant up 
+vagrant ssh 
+
+```
+
+### Windows 
+
+```
+## git for windows -> 
+## https://git-scm.com/download/win
+## Install virtualbox
+## Install vagrant -> vagrantup.com 
+
+## Go on the commandline -> terminal
+cd 
+mkdir centos8-directory 
+cd centos8-directory
+vagrant init centos/8 
+vagrant up 
+vagrant ssh 
+```
+
+<div class="page-break"></div>
+
+### bash-profile testen
+
+
+```
+source /root/.bash-profile
+## oder kürzer 
+. /root/.bash-profile 
+```
+
+<div class="page-break"></div>
