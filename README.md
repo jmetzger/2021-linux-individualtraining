@@ -109,4 +109,5 @@
   1. Tipps&Tricks 
      * [Output von terminal sesssion inkl. SSH-Verbindung loggen](https://leszekjaskierny.wordpress.com/2017/01/27/mac-x-os-log-terminal-session-to-file/)
      * [Vagrant (Windows/OS X)](vagrant.md) 
+     * [bash-profile testen](bash-profile.md)
 
