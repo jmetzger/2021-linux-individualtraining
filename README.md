@@ -105,6 +105,7 @@
      * [realmd gegen ADS](https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html-single/windows_integration_guide/index#sssd-ad-proc)
      * [MariaDB Galera Cluster mit Ansible](https://github.com/jmetzger/ansible-galera-cluster-maxscale)
      * [Ansible Module](https://docs.ansible.com/ansible/2.9/modules)
+     * [Linux Hardening - TelekomSecurity](https://github.com/telekomsecurity/TelekomSecurity.Compliance.Framework)
   
   1. Tipps&Tricks 
      * [Output von terminal sesssion inkl. SSH-Verbindung loggen](https://leszekjaskierny.wordpress.com/2017/01/27/mac-x-os-log-terminal-session-to-file/)
