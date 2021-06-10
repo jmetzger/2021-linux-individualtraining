@@ -66,7 +66,26 @@ SELINUX=disabled
 ## Apache started nicht wg Port-Änderung (Port: 82)  - Nice and Smooth (better!) 
 
 ```
+# Falls sealert nicht installiert ist -> sealert -> command not found 
+yum whatprovides sealert 
+
+sealert -a /var/log/audit/audit.log > /root/report
+# In der Datei finden wir Handlungsanweisungen 
+
+# Welche port-typen gibt es für http
+semanage port -l | grep http
+# Wir entscheiden uns für http_port_t weil hier auch die 80 auftaucht 
 semanage port -a -t http_port_t -p tcp 82 
 setenforce 1 
 systemctl restart httpd 
+
+# Don't forget to add firewall rules 
+firewall-cmd --list-all # is the port listed here ? 
+firewall-cmd --add-port=82/tcp --zone=public --permanent # Sets in configuration but not in runtime 
+firewall-cmd --reload 
+
+# Now test with and your public ip 
+# get it with 
+ip a 
+
 ```
