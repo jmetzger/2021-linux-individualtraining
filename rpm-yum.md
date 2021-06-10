@@ -20,8 +20,14 @@ yum search httpd
 yum install httpd 
 
 # Installation updaten 
-yum update 
+yum upgrade # yum update is still available but not documented 
 ## automatisch fragen bejahen 
 yum -y update 
 
+```
+
+## Welche Paket stellt einen bestimmten Befehl zur Verfügung ? 
+
+```
+yum whatprovides sealert 
 ```
