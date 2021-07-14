@@ -7,7 +7,7 @@
 # suche // apache heisst auf centos httpd
 yum search httpd
 # oder
-dns search httpd
+dnf search httpd
 
 ## Schritt 2: 
 yum install httpd 
