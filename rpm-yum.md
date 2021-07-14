@@ -3,7 +3,7 @@
 ## Wo werden die Repos konfiguriert 
 
 ```
-/etc/yum/repos.d
+/etc/yum.repos.d
 
 ```
 
