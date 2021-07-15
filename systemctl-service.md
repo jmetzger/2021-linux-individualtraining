@@ -42,7 +42,7 @@ echo $?
 ## Reboot / Poweroff 
 
 
-
+```
 # Rebooten des Servers
 # verweist auf systemctl 
 reboot
@@ -58,6 +58,7 @@ shutdown -h now
 poweroff
 systemctl poweroff 
 ```
+
 ## Wie sehe ich bei einem neu installierten Serverdienst (z.B. httpd / mariadb) wie der Dienst heisst ?
 
 ```
