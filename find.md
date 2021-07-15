@@ -7,6 +7,12 @@
 find / -name tmpfiles.d -type d 
 ```
 
+## Find diretories ending on ".d" 
+
+```
+find / -type d  -name "*.d"
+```
+
 ## Find files by inode and delete them 
 
 ```
