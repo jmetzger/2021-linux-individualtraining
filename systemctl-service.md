@@ -144,6 +144,7 @@ systemctl isolate reboot.target
 ## Dienste maskieren, so dass sie nicht gestartet werden können 
 
 ```
+## Ubuntu 
 systemctl mask apache2
 # kann jetzt gestartet werden
 systemctl start apache2
@@ -153,6 +154,19 @@ systemctl unmask apache2
 # kann wieder gestaret werden
 systemctl start apache2
 ```
+
+```
+## Centos / Redhat 
+systemctl mask httpd
+# kann jetzt gestartet werden
+systemctl start httpd
+
+# de-maskieren 
+systemctl unmask httpd 
+# kann wieder gestaret werden
+systemctl start httpd
+```
+
 
 ## systemctl Cheatsheet 
 
