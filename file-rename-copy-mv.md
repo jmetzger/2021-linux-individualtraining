@@ -19,6 +19,31 @@ mv datei1 /dokumente/
 
 ```
 
+## Ordner verschieben 
+
+```
+# Wir sind root 
+cd /root
+# Vorbereitung 
+mkdir test 
+cd test 
+mkdir pruefung
+cd pruefung
+touch ergebnis 
+
+# Verzeichnis training 
+mkdir /root/training 
+
+# Jetzt verschieben 
+# Schritt 1: Ins Verzeichnis reinwechseln, dass Verzeichnis beinhaltet, dass ich verschieben möchte
+cd /root/test
+# Variante 1: mit absolutem Pfad 
+mv pruefung /root/training
+# Alternativ: Variante 2: relativier Pfad
+mv pruefung ../training 
+
+```
+
 ## Rechte behalten bei kopieren
 
 ```
