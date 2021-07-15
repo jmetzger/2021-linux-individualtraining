@@ -14,6 +14,9 @@ systemctl -t service # Shortcut
 systemctl list-units -t service | grep ^apache
 # die Abkürzung 
 systemctl -t service | grep ^apache
+```
+
+## Dienste aktivieren / deaktivieren 
 
 
 # Dienst aktivieren
