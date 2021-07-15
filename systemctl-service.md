@@ -62,6 +62,15 @@ systemctl list-unit-files -t service | grep -i mariadb # Hier sucht er in allen 
 
 ```
 
+## Dienste starten und stoppen 
+
+```
+systemctl stop httpd 
+systemctl status httpd
+systemctl start httpd
+systemctl status httpd 
+```
+
 ## Wie sehe ich, wie ein Service konfiguriert ist / Dienstekonfiguration anzeigen ? 
 
 ```
