@@ -18,7 +18,7 @@ systemctl -t service | grep ^apache
 
 ## Dienste aktivieren / deaktivieren 
 
-
+```
 # Dienst aktivieren
 systemctl enable apache2 
 # Dienst aktivieren und gleich starten 
