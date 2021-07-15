@@ -13,6 +13,13 @@ ps aux  # x alle Prozesse anzeigen, die nicht an ein Terminal gebunden sind
 ps -u kurs -o pid,cmd # -o für felder der ausgabe 
 ```
 
+## Wieviele apache - Prozesse gibt es ? 
+
+```
+# Achtung Ergebnis - 1 - weil grep noch mit auftaucht
+ps aux | grep -c apache 
+```
+
 ## top für bestimmten user 
 
 ```
