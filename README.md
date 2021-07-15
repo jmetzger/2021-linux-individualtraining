@@ -84,6 +84,7 @@
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
      * [IP-Adresse auslesen](ip-adresse-auslesen.md) 
      * [Netzwerk unter Centos konfigurieren - nmtui](nmtui.md)
+     * [Netzwerk unter Centos konfigurieren - sysconfig](network-sysconfig.md)
      * [Auf welchen Ports lauscht mein Server](lsof.md) 
      * [Netzwerkabel drin/nicht drin?](netzwerkkarte-kabel-drin.md)
      * [Welcher DHCP-Server über NetworkManager](dhcp-server.md)
