@@ -37,10 +37,11 @@ systemctl is-enabled
 disabled
 echo $?
 1 # 1 wenn nicht aktiviert
+```
 
 ## Reboot / Poweroff 
 
-```
+
 
 # Rebooten des Servers
 # verweist auf systemctl 
