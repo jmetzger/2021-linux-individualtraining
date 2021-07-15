@@ -1,4 +1,4 @@
-# File - rename/copy/mv 
+# File/Verzeichnis - rename/copy/mv 
 
 ## Dateien umbenennen, verschieben, kopieren 
 
