@@ -35,7 +35,7 @@ sed '/^#/d' services > services_no_comments
 ## Edit in place 
 
 ```
-sed '/^#/d' -i .bkup services
+sed '/^#/d' -i.bkup services
 
 
 ```
