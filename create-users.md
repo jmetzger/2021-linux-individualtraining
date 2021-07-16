@@ -1,4 +1,4 @@
-# Create users 
+# Create users / Set password
 
 ## Benutzer anlegen (auf Ubuntu)  
 
@@ -8,4 +8,18 @@ useradd
 
 # for admins interactive
 adduser
+```
+
+## Benutzer anlegen (auf Centos) 
+
+```
+# no difference between useradd/adduser 
+adduser 
+```
+
+## Set password (you need to be root, if you do not know the former password) 
+
+```
+# man passwd 
+passwd 
 ```
