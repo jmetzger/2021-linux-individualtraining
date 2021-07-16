@@ -34,3 +34,9 @@ yum -y update
 ```
 yum whatprovides sealert 
 ```
+
+## Paket deinstallieren 
+
+```
+yum remove mariadb-server 
+```
