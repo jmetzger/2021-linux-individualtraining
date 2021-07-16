@@ -24,6 +24,10 @@ tail /etc/services
 
 # die letzten 40 Zeilen 
 tail -n 40 /etc/services
+
+cat /etc/services | tail -n 500
+# mit umleitung datei 
+cat /etc/services | tail -n 500 >> neuedatei # anhängen - bestehende Zeilen werden nicht überschrieben.
 ```
 
 ## Ausgabe der letzten Zeilen und ausgabe in Datei 
