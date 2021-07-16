@@ -11,13 +11,16 @@
 
 ```
 # Was ist installiert
-yum list installed
+yum list --installed
 
 # Nach Paket suchen 
 yum search httpd 
 
 # Paket installieren 
 yum install httpd 
+
+# Welches Installations-Paket stellt nmap zur Verfügung 
+yum provides nmap 
 
 # Installation updaten 
 yum upgrade # yum update is still available but not documented 
