@@ -6,10 +6,10 @@
 # Search for all occurences of tcp 
 cp /etc/services /root/services 
 cd /root 
-sed 's/tcp/linux/g' geekfile.txt
+sed 's/tcp/linux/g' services
 
 # line 1 to line 3 
-sed '1,3 s/unix/linux/' geekfile.txt
+sed '1,3 s/unix/linux/' services 
 
 ```
 
@@ -20,7 +20,15 @@ sed '1,3 s/unix/linux/' geekfile.txt
 ## Delete Pattern matching line 
 
 ```
-sed '/pattern/d' filename.txt
+# Example 1
+cd /root
+sed '/tcp/d' services
+
+# Example 2 
+cd /root
+sed '/^#/d' services > services_no_comments
+
+
 ```
 
 
