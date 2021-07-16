@@ -107,6 +107,7 @@
      * [MariaDB Galera Cluster mit Ansible](https://github.com/jmetzger/ansible-galera-cluster-maxscale)
      * [Ansible Module](https://docs.ansible.com/ansible/2.9/modules)
      * [Linux Hardening - TelekomSecurity](https://github.com/telekomsecurity/TelekomSecurity.Compliance.Framework)
+     * [Example Question Linux Foundation LFCSA](https://training.linuxfoundation.org/wp-content/uploads/2019/04/LFCS-Practice-Questions-v1.0.pdf)
   
   1. Tipps&Tricks 
      * [Output von terminal sesssion inkl. SSH-Verbindung loggen](https://leszekjaskierny.wordpress.com/2017/01/27/mac-x-os-log-terminal-session-to-file/)
