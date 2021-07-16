@@ -32,6 +32,14 @@ sed '/^#/d' services > services_no_comments
 ```
 
 
+## Edit in place 
+
+```
+sed '/^#/d' -i .bkup services
+
+
+```
+
 ## Ref
 
   * https://www.geeksforgeeks.org/sed-command-in-linux-unix-with-examples/
