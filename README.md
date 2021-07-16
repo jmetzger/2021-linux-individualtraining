@@ -68,7 +68,7 @@
      * [Gnome unter Ubuntu installieren](gnome-ubuntu.md) 
      * [X-Server - Ausgabe auf Windows umleiten](xserver-windows-client.md)
      * [Installations-Images-Server](https://ubuntu.com/download/server#download) 
-  1. Wartung und Aktualisierung
+  1. Installation/Wartung und Aktualisierung
      * [Aktualisierung des Systems](update-upgrade.md)
      * [Paketmanager apt/dpkg](apt-dpkg.md) 
      * [Paketmanager rpm/yum](rpm-yum.md)
