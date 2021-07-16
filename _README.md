@@ -46,6 +46,8 @@
      * [Bestimmte Zeilen aus Datei anzeigen - grep](#bestimmte-zeilen-aus-datei-anzeigen---grep)
      * [Erweiterte Suche mit Grep](#erweiterte-suche-mit-grep)
      * [Find](#find)
+     * [sed](#sed)
+     * [awk](#awk)
   1. Logs/Loganalyse
      * [Logfile beobachten](#logfile-beobachten)
      * [Dienste debuggen](#dienste-debuggen)
@@ -1268,6 +1270,72 @@ find -inum 12604361 -type f -delete
 
 <div class="page-break"></div>
 
+### sed
+
+
+### Examples 
+
+```
+## Search for all occurences of tcp 
+cp /etc/services /root/services 
+cd /root 
+sed 's/tcp/linux/g' services
+
+## line 1 to line 3 
+sed '1,3 s/unix/linux/' services 
+
+```
+
+### Delete 
+
+
+
+### Delete Pattern matching line 
+
+```
+## Example 1
+cd /root
+sed '/tcp/d' services
+
+## Example 2 
+cd /root
+sed '/^#/d' services > services_no_comments
+
+
+```
+
+
+### Edit in place 
+
+```
+sed '/^#/d' -i.bkup services
+
+
+```
+
+### Ref
+
+  * https://www.geeksforgeeks.org/sed-command-in-linux-unix-with-examples/
+
+<div class="page-break"></div>
+
+### awk
+
+
+### Examples
+
+```
+awk '{print $3 "\t" $4}' /etc/services 
+awk '/tcp/' /etc/services 
+
+awk '{print $2" "$1}' services
+```
+
+
+
+
+<div class="page-break"></div>
+
 ## Logs/Loganalyse
 
 ### Logfile beobachten
@@ -2012,6 +2080,11 @@ yum install httpd
 ## Welches Installations-Paket stellt nmap zur Verfügung 
 yum provides nmap 
 
+```
+
+### System aktualisieren / updaten 
+
+```
 ## Installation updaten 
 yum upgrade # yum update is still available but not documented 
 ### automatisch fragen bejahen 
@@ -2023,6 +2096,12 @@ yum -y update
 
 ```
 yum whatprovides sealert 
+```
+
+### Paket deinstallieren 
+
+```
+yum remove mariadb-server 
 ```
 
 <div class="page-break"></div>
