@@ -95,6 +95,8 @@
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](script-date.md) 
      * [Ausführen/Verketten von mehreren Befehlen](multiple-commands.md)
+     * [Howto: Bash Scripting](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_02_02.html)
+     * [Howto: Advanced Bash Scripting](https://tldp.org/LDP/abs/html/)
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](cronjob-hourly.md)
      * [cronjob (zentral) - crond](crond.md)
