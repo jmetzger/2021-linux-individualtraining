@@ -79,7 +79,7 @@
      * [ufw (uncomplicated firewall)](ufw.md)
      * [firewalld - Ubuntu](firewalld.md)
      * [firewalld - Centos 8](firewalld-centos8.md)
-     * [Scannen und Überprüfen mit telnet/nmap](nmap-telnet.md) 
+     * [Scannen und Überprüfen mit telnet/nmap](telnet-nmap.md) 
   1. Netzwerk/Dienste 
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](dhclient.md) 
      * [IP-Adresse auslesen](ip-adresse-auslesen.md) 
