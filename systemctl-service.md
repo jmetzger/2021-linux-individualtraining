@@ -101,9 +101,21 @@ lrwxrwxrwx 1 root root 16 Jan  6 20:47 runlevel5.target -> graphical.target
 lrwxrwxrwx 1 root root 13 Jan  6 20:47 runlevel6.target -> reboot.target
 ```
 
-## Welche Dienste sind aktiviert/deaktiviert 
+## Welche Dienste sind aktiviert/deaktiviert (enabled/disabled) - sollten laufen ? 
 ```
 systemctl list-unit-files -t service
+```
+
+## Welche Dienste laufen (active/inactive) ? 
+
+```
+# Dort der Eintrag in der Zeile active/inactive 
+systemctl list-units --type=service | less 
+```
+## Welche Dienste sollten zwar laufen, konnten aber nicht gestartet werden mit einbeziehen ? 
+
+```
+systemctl list-units --all --type=service | less 
 ```
 
 ## Dienste bearbeiten 
