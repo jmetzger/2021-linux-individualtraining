@@ -68,7 +68,7 @@
      * [Gnome unter Ubuntu installieren](#gnome-unter-ubuntu-installieren)
      * [X-Server - Ausgabe auf Windows umleiten](#x-server---ausgabe-auf-windows-umleiten)
      * [Installations-Images-Server](https://ubuntu.com/download/server#download)
-  1. Wartung und Aktualisierung
+  1. Installation/Wartung und Aktualisierung
      * [Aktualisierung des Systems](#aktualisierung-des-systems)
      * [Paketmanager apt/dpkg](#paketmanager-aptdpkg)
      * [Paketmanager rpm/yum](#paketmanager-rpmyum)
@@ -84,6 +84,7 @@
      * [IP-Adresse von DHCP-Server holen (quick-and-dirty)](#ip-adresse-von-dhcp-server-holen-quick-and-dirty)
      * [IP-Adresse auslesen](#ip-adresse-auslesen)
      * [Netzwerk unter Centos konfigurieren - nmtui](#netzwerk-unter-centos-konfigurieren---nmtui)
+     * [Netzwerk unter Centos konfigurieren - sysconfig](#netzwerk-unter-centos-konfigurieren---sysconfig)
      * [Auf welchen Ports lauscht mein Server](#auf-welchen-ports-lauscht-mein-server)
      * [Netzwerkabel drin/nicht drin?](#netzwerkabel-drinnicht-drin)
      * [Welcher DHCP-Server über NetworkManager](#welcher-dhcp-server-über-networkmanager)
@@ -94,6 +95,8 @@
   1. Bash/Bash-Scripting 
      * [Einfaches Script zur Datumsausgabe](#einfaches-script-zur-datumsausgabe)
      * [Ausführen/Verketten von mehreren Befehlen](#ausführenverketten-von-mehreren-befehlen)
+     * [Howto: Bash Scripting](https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_02_02.html)
+     * [Howto: Advanced Bash Scripting](https://tldp.org/LDP/abs/html/)
   1. Timers/cronjobs 
      * [Cronjob - hourly einrichten](#cronjob---hourly-einrichten)
      * [cronjob (zentral) - crond](#cronjob-zentral---crond)
@@ -106,11 +109,18 @@
      * [MariaDB Galera Cluster mit Ansible](https://github.com/jmetzger/ansible-galera-cluster-maxscale)
      * [Ansible Module](https://docs.ansible.com/ansible/2.9/modules)
      * [Linux Hardening - TelekomSecurity](https://github.com/telekomsecurity/TelekomSecurity.Compliance.Framework)
+     * [Example Question Linux Foundation LFCSA](https://training.linuxfoundation.org/wp-content/uploads/2019/04/LFCS-Practice-Questions-v1.0.pdf)
   
   1. Tipps&Tricks 
      * [Output von terminal sesssion inkl. SSH-Verbindung loggen](https://leszekjaskierny.wordpress.com/2017/01/27/mac-x-os-log-terminal-session-to-file/)
      * [Vagrant (Windows/OS X)](#vagrant-windowsos-x)
+     * [Centos auf Virtualbox installieren](#centos-auf-virtualbox-installieren)
+     * [Digitalocean - droplet-virtual machine installieren](https://www.digitalocean.com/)
      * [bash-profile testen](#bash-profile-testen)
+
+  1. Übung 
+     * [Übung Dateisystem](#übung-dateisystem)
+     * [Übung Komplett - Centos8](#übung-komplett---centos8)
 
 
 <div class="page-break"></div>
@@ -608,6 +618,31 @@ mv datei1 /dokumente/
 
 ```
 
+### Ordner verschieben 
+
+```
+## Wir sind root 
+cd /root
+## Vorbereitung 
+mkdir test 
+cd test 
+mkdir pruefung
+cd pruefung
+touch ergebnis 
+
+## Verzeichnis training 
+mkdir /root/training 
+
+## Jetzt verschieben 
+## Schritt 1: Ins Verzeichnis reinwechseln, dass Verzeichnis beinhaltet, dass ich verschieben möchte
+cd /root/test
+## Variante 1: mit absolutem Pfad 
+mv pruefung /root/training
+## Alternativ: Variante 2: relativier Pfad
+mv pruefung ../training 
+
+```
+
 ### Rechte behalten bei kopieren
 
 ```
@@ -713,6 +748,13 @@ ps aux  # x alle Prozesse anzeigen, die nicht an ein Terminal gebunden sind
 
 ```
 ps -u kurs -o pid,cmd # -o für felder der ausgabe 
+```
+
+### Wieviele apache - Prozesse gibt es ? 
+
+```
+## Achtung Ergebnis - 1 - weil grep noch mit auftaucht
+ps aux | grep -c apache 
 ```
 
 ### top für bestimmten user 
@@ -823,6 +865,20 @@ useradd
 
 ## for admins interactive
 adduser
+```
+
+### Benutzer anlegen (auf Centos) 
+
+```
+## no difference between useradd/adduser 
+adduser 
+```
+
+### Set password (you need to be root, if you do not know the former password) 
+
+```
+## man passwd 
+passwd 
 ```
 
 <div class="page-break"></div>
@@ -987,6 +1043,10 @@ tail /etc/services
 
 ## die letzten 40 Zeilen 
 tail -n 40 /etc/services
+
+cat /etc/services | tail -n 500
+## mit umleitung datei 
+cat /etc/services | tail -n 500 >> neuedatei # anhängen - bestehende Zeilen werden nicht überschrieben.
 ```
 
 ### Ausgabe der letzten Zeilen und ausgabe in Datei 
@@ -1191,6 +1251,12 @@ grep  "[[:digit:]]\{5\}" /root/namen
 find / -name tmpfiles.d -type d 
 ```
 
+### Find diretories ending on ".d" 
+
+```
+find / -type d  -name "*.d"
+```
+
 ### Find files by inode and delete them 
 
 ```
@@ -1360,8 +1426,11 @@ systemctl -t service # Shortcut
 systemctl list-units -t service | grep ^apache
 ## die Abkürzung 
 systemctl -t service | grep ^apache
+```
 
+### Dienste aktivieren / deaktivieren 
 
+```
 ## Dienst aktivieren
 systemctl enable apache2 
 ## Dienst aktivieren und gleich starten 
@@ -1380,7 +1449,12 @@ systemctl is-enabled
 disabled
 echo $?
 1 # 1 wenn nicht aktiviert
+```
 
+### Reboot / Poweroff 
+
+
+```
 ## Rebooten des Servers
 ## verweist auf systemctl 
 reboot
@@ -1396,6 +1470,7 @@ shutdown -h now
 poweroff
 systemctl poweroff 
 ```
+
 ### Wie sehe ich bei einem neu installierten Serverdienst (z.B. httpd / mariadb) wie der Dienst heisst ?
 
 ```
@@ -1406,6 +1481,15 @@ systemctl poweroff
 systemctl list-unit-files -t service | grep -i mariadb # Hier sucht er in allen Konfigurationsdateien  
 
 
+```
+
+### Dienste starten und stoppen 
+
+```
+systemctl stop httpd 
+systemctl status httpd
+systemctl start httpd
+systemctl status httpd 
 ```
 
 ### Wie sehe ich, wie ein Service konfiguriert ist / Dienstekonfiguration anzeigen ? 
@@ -1429,9 +1513,21 @@ lrwxrwxrwx 1 root root 16 Jan  6 20:47 runlevel5.target -> graphical.target
 lrwxrwxrwx 1 root root 13 Jan  6 20:47 runlevel6.target -> reboot.target
 ```
 
-### Welche Dienste sind aktiviert/deaktiviert 
+### Welche Dienste sind aktiviert/deaktiviert (enabled/disabled) - sollten laufen ? 
 ```
 systemctl list-unit-files -t service
+```
+
+### Welche Dienste laufen (active/inactive) ? 
+
+```
+## Dort der Eintrag in der Zeile active/inactive 
+systemctl list-units --type=service | less 
+```
+### Welche Dienste sollten zwar laufen, konnten aber nicht gestartet werden mit einbeziehen ? 
+
+```
+systemctl list-units --all --type=service | less 
 ```
 
 ### Dienste bearbeiten 
@@ -1472,6 +1568,7 @@ systemctl isolate reboot.target
 ### Dienste maskieren, so dass sie nicht gestartet werden können 
 
 ```
+### Ubuntu 
 systemctl mask apache2
 ## kann jetzt gestartet werden
 systemctl start apache2
@@ -1481,6 +1578,19 @@ systemctl unmask apache2
 ## kann wieder gestaret werden
 systemctl start apache2
 ```
+
+```
+### Centos / Redhat 
+systemctl mask httpd
+## kann jetzt gestartet werden
+systemctl start httpd
+
+## de-maskieren 
+systemctl unmask httpd 
+## kann wieder gestaret werden
+systemctl start httpd
+```
+
 
 ### systemctl Cheatsheet 
 
@@ -1783,7 +1893,7 @@ sudo tasksel install ubuntu-desktop
 
   * https://ubuntu.com/download/server#download
 
-## Wartung und Aktualisierung
+## Installation/Wartung und Aktualisierung
 
 ### Aktualisierung des Systems
 
@@ -1883,7 +1993,7 @@ apt install apache2
 ### Wo werden die Repos konfiguriert 
 
 ```
-/etc/yum/repos.d
+/etc/yum.repos.d
 
 ```
 
@@ -1891,13 +2001,16 @@ apt install apache2
 
 ```
 ## Was ist installiert
-yum list installed
+yum list --installed
 
 ## Nach Paket suchen 
 yum search httpd 
 
 ## Paket installieren 
 yum install httpd 
+
+## Welches Installations-Paket stellt nmap zur Verfügung 
+yum provides nmap 
 
 ## Installation updaten 
 yum upgrade # yum update is still available but not documented 
@@ -1949,7 +2062,7 @@ tar xvf master.tar.gz
 ## suche // apache heisst auf centos httpd
 yum search httpd
 ## oder
-dns search httpd
+dnf search httpd
 
 ### Schritt 2: 
 yum install httpd 
@@ -2439,6 +2552,18 @@ und Pfeiltasten
 
 <div class="page-break"></div>
 
+### Netzwerk unter Centos konfigurieren - sysconfig
+
+
+```
+cd /etc/sysconfig/
+nano ifcfg-enp0s8
+## Änderungen vornehmen 
+systemctl restart NetworkManager 
+```
+
+<div class="page-break"></div>
+
 ### Auf welchen Ports lauscht mein Server
 
 
@@ -2595,6 +2720,14 @@ befehl1 || befehl2
 ```
 
 <div class="page-break"></div>
+
+### Howto: Bash Scripting
+
+  * https://tldp.org/LDP/Bash-Beginners-Guide/html/sect_02_02.html
+
+### Howto: Advanced Bash Scripting
+
+  * https://tldp.org/LDP/abs/html/
 
 ## Timers/cronjobs 
 
@@ -2785,6 +2918,10 @@ systemctl list-timers
 
   * https://github.com/telekomsecurity/TelekomSecurity.Compliance.Framework
 
+### Example Question Linux Foundation LFCSA
+
+  * https://training.linuxfoundation.org/wp-content/uploads/2019/04/LFCS-Practice-Questions-v1.0.pdf
+
 ## Tipps&Tricks 
 
 ### Output von terminal sesssion inkl. SSH-Verbindung loggen
@@ -2829,6 +2966,21 @@ vagrant ssh
 
 <div class="page-break"></div>
 
+### Centos auf Virtualbox installieren
+
+
+```
+1. Installation von virtualbox (virtualbox.org) 
+2. ISO von Centos runterladen. z.B. http://ftp.rrzn.uni-hannover.de/centos/8.4.2105/isos/x86_64/CentOS-8.4.2105-x86_64-boot.iso
+3. Neue VM aufsetzen in virtualbox. 
+```
+
+<div class="page-break"></div>
+
+### Digitalocean - droplet-virtual machine installieren
+
+  * https://www.digitalocean.com/
+
 ### bash-profile testen
 
 
@@ -2836,6 +2988,55 @@ vagrant ssh
 source /root/.bash-profile
 ## oder kürzer 
 . /root/.bash-profile 
+```
+
+<div class="page-break"></div>
+
+## Übung 
+
+### Übung Dateisystem
+
+
+```
+1. In das Heimatverzeichnis von root wechseln 
+2. Ordner training anlegen 
+3. In Ordner training Inhalt der Datei /etc/services in datei ports schreiben
+4. In Heimatverzeichnis root Struktur anlegen: staedte/kinos/saehle 
+5. In saehle leere datei anlegen mit name reservierung 
+6. Verzeichnis saehle löschen
+7. In Heimatverzeichnis root Ordner papierkorb anlegen 
+8. Verzeichnis kinos in papierkorb verschieben 
+9. Namen der Staedte "Köln, Hamburg München" in verzeichnis staedte in Datei liste schreiben
+10. An liste staedte "Duisburg, Mannheim, Karlsruhe" anhängen. 
+```
+
+<div class="page-break"></div>
+
+### Übung Komplett - Centos8
+
+
+```
+Erstelle den Nutzer "teilnehmer" 
+Setze ein Passwort für den Nutzer
+Sorge dafür, dass der Nutzer als "root" arbeiten kann
+Test dies mit einer neuen ssh-Verbindung (Putty) 
+Erstelle eine neue Gruppe teamwork 
+Ornder teilnehmer dieser Gruppe zu. 
+
+Erstelle eine neue Verzeichnisstruktur im Heimatverzeichnis von "teilnehmer" -> planung/themen/projekte
+Kopiere die Datei /etc/services in den neue angelegten Unterordner projekt
+Lass die ersten 1000 Zeilen der services datei in projekte ausgeben und schreibe diese in ergebnis_ports
+Lass die letzten 500 Zeilen der services datei in projekte ausgeben und hänge diese ans Ende von ergebnis_ports an
+Zählen die Zeilen in ergebnis_ports in denen am Anfang der Zeile ein Kommentar vorkommt und schreibe das Ergebnis in ergebnis_ports_anzahl 
+Zähle alle Zeilen in ergebnis_ports und zwar nicht mit grep und hänge das Ergebnis in ergebnis_ports_anzahl an.
+
+Installiere mariadb-server
+Finde heraus, wie der Dienst heisst (Hinweis: der mit dem @-Zeichen ist es nicht)
+prüfe ob der Dienst nach läuft, starte den Dienst und aktiviere ihn (enable)
+Find heraus, ob der Dienst nach aussen lauscht (port offen) 
+
+Finde heraus unter welchen Prozess-ID's (1 oder mehrere) der mariadb-server läuft
+
 ```
 
 <div class="page-break"></div>
