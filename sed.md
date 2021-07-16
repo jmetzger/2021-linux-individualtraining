@@ -4,7 +4,7 @@
 
 ```
 # Search for all occurences of tcp 
-cp /etc/services /root/services- 
+cp /etc/services /root/services 
 cd /root 
 sed 's/tcp/linux/g' geekfile.txt
 
