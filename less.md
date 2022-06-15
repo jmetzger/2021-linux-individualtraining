@@ -23,6 +23,8 @@ cat /etc/services | less
 /suchbegriff + RETURN
 # nächstes Suchergebnis
 n 
+# Zurück zum letzten Suchergebnis 
+N
 ```
 
 ##  Springen ans Ende/an den Anfang  
