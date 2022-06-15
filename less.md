@@ -1,4 +1,4 @@
-# Less 
+# less 
 
 ## Open a file with less 
 
